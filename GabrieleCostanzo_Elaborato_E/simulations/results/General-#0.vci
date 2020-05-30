@@ -1,0 +1,918 @@
+file 5139326 1590863139                                         
+version 2
+run General-0-20200530-20:01:25-2173
+attr configname General
+attr datetime 20200530-20:01:25
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsf ""
+attr measurement ""
+attr network ReteSwitched
+attr processid 2173
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param **.customDatarate 10
+param **.host1.numApps 1
+param **.host2.numApps 1
+param **.host3.numApps 1
+param **.host4.numApps 1
+param **.host5.numApps 1
+param **.host6.numApps 1
+param **.host7.numApps 1
+param **.host8.numApps 1
+param **.host8.app[0].typename "\"UdpSink\""
+param **.host8.app[0].localPort 8000
+param **.host1.app[0].typename "\"UdpBasicApp\""
+param **.host1.app[0].destPort 8000
+param **.host1.app[0].destAddresses "\"host8\""
+param **.host1.app[0].messageLength 100B
+param **.host1.app[0].startTime "uniform(0s, 10ms)"
+param **.host2.app[0].typename "\"UdpBasicApp\""
+param **.host2.app[0].destPort 8000
+param **.host2.app[0].destAddresses "\"host8\""
+param **.host2.app[0].messageLength 100B
+param **.host2.app[0].startTime "uniform(0s, 10ms)"
+param **.host3.app[0].typename "\"UdpBasicApp\""
+param **.host3.app[0].destPort 8000
+param **.host3.app[0].destAddresses "\"host8\""
+param **.host3.app[0].messageLength 100B
+param **.host3.app[0].startTime "uniform(0s, 10ms)"
+param **.host4.app[0].typename "\"UdpBasicApp\""
+param **.host4.app[0].destPort 8000
+param **.host4.app[0].destAddresses "\"host8\""
+param **.host4.app[0].messageLength 100B
+param **.host4.app[0].startTime "uniform(0s, 10ms)"
+param **.host5.app[0].typename "\"UdpBasicApp\""
+param **.host5.app[0].destPort 8000
+param **.host5.app[0].destAddresses "\"host8\""
+param **.host5.app[0].messageLength 100B
+param **.host5.app[0].startTime "uniform(0s, 10ms)"
+param **.host6.app[0].typename "\"UdpBasicApp\""
+param **.host6.app[0].destPort 8000
+param **.host6.app[0].destAddresses "\"host8\""
+param **.host6.app[0].messageLength 100B
+param **.host6.app[0].startTime "uniform(0s, 10ms)"
+param **.host7.app[0].typename "\"UdpBasicApp\""
+param **.host7.app[0].destPort 8000
+param **.host7.app[0].destAddresses "\"host8\""
+param **.host7.app[0].messageLength 100B
+param **.host7.app[0].startTime "uniform(0s, 10ms)"
+param **.host1.app[0].sendInterval 5ms
+param **.host2.app[0].sendInterval 10ms
+param **.host3.app[0].sendInterval 15ms
+param **.host4.app[0].sendInterval 20ms
+param **.host5.app[0].sendInterval 25ms
+param **.host6.app[0].sendInterval 30ms
+param **.host7.app[0].sendInterval 35ms
+param **.host1.app[0].packetName "\"UDP_Data_Sender0\""
+param **.host2.app[0].packetName "\"UDP_Data_Sender1\""
+param **.host3.app[0].packetName "\"UDP_Data_Sender2\""
+param **.host4.app[0].packetName "\"UDP_Data_Sender3\""
+param **.host5.app[0].packetName "\"UDP_Data_Sender4\""
+param **.host6.app[0].packetName "\"UDP_Data_Sender5\""
+param **.host7.app[0].packetName "\"UDP_Data_Sender6\""
+param **.switch.relayUnit.typename "\"MacRelayUnit\""
+param **.switch.macTable.addressTableFile "\"switchAddressFile.txt\""
+
+vector 0 ReteSwitched.host7.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 1 ReteSwitched.host7.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 2 ReteSwitched.host7.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 3 ReteSwitched.host7.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 4 ReteSwitched.host7.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 5 ReteSwitched.host7.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 6 ReteSwitched.host7.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 7 ReteSwitched.host7.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 8 ReteSwitched.host7.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 9 ReteSwitched.host7.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 10 ReteSwitched.switch.eth[6].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 11 ReteSwitched.switch.eth[6].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 12 ReteSwitched.switch.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 13 ReteSwitched.switch.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 14 ReteSwitched.switch.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 15 ReteSwitched.switch.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 16 ReteSwitched.switch.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 17 ReteSwitched.switch.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 18 ReteSwitched.switch.eth[1].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 19 ReteSwitched.switch.eth[1].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 20 ReteSwitched.switch.eth[1].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 21 ReteSwitched.switch.eth[1].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 22 ReteSwitched.switch.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 23 ReteSwitched.switch.eth[2].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 24 ReteSwitched.switch.eth[2].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 25 ReteSwitched.switch.eth[2].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 26 ReteSwitched.switch.eth[2].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 27 ReteSwitched.switch.eth[3].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 28 ReteSwitched.switch.eth[3].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 29 ReteSwitched.switch.eth[3].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 30 ReteSwitched.switch.eth[3].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 31 ReteSwitched.switch.eth[3].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 32 ReteSwitched.switch.eth[4].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 33 ReteSwitched.switch.eth[4].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 34 ReteSwitched.switch.eth[4].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 35 ReteSwitched.switch.eth[4].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 36 ReteSwitched.switch.eth[4].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 37 ReteSwitched.switch.eth[5].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 38 ReteSwitched.switch.eth[5].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 39 ReteSwitched.switch.eth[5].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 40 ReteSwitched.switch.eth[5].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 41 ReteSwitched.switch.eth[5].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 42 ReteSwitched.switch.eth[7].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 43 ReteSwitched.switch.eth[7].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 44 ReteSwitched.switch.eth[7].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 45 ReteSwitched.switch.eth[7].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 46 ReteSwitched.switch.eth[7].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 47 ReteSwitched.switch.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 48 ReteSwitched.switch.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 49 ReteSwitched.switch.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 50 ReteSwitched.switch.eth[3].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 51 ReteSwitched.switch.eth[4].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 52 ReteSwitched.switch.eth[5].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 53 ReteSwitched.switch.eth[7].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 54 ReteSwitched.host1.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 55 ReteSwitched.host1.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 56 ReteSwitched.host2.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 57 ReteSwitched.host2.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 58 ReteSwitched.host3.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 59 ReteSwitched.host3.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 60 ReteSwitched.host4.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 61 ReteSwitched.host4.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 62 ReteSwitched.host5.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 63 ReteSwitched.host5.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 64 ReteSwitched.host6.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 65 ReteSwitched.host6.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 66 ReteSwitched.host8.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 67 ReteSwitched.host8.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 68 ReteSwitched.host1.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 69 ReteSwitched.host2.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 70 ReteSwitched.host3.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 71 ReteSwitched.host4.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 72 ReteSwitched.host5.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 73 ReteSwitched.host6.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 74 ReteSwitched.host8.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 75 ReteSwitched.host8.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr source arpReplySent
+attr title "ARP replies sent, vector(packetBytes)"
+vector 76 ReteSwitched.host8.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 77 ReteSwitched.host8.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 78 ReteSwitched.host8.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 79 ReteSwitched.host8.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 80 ReteSwitched.host8.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 81 ReteSwitched.host8.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 82 ReteSwitched.host8.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 83 ReteSwitched.switch.eth[7].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 84 ReteSwitched.switch.eth[7].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 85 ReteSwitched.switch.eth[6].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 86 ReteSwitched.switch.eth[6].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 87 ReteSwitched.switch.eth[6].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 88 ReteSwitched.switch.eth[6].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 89 ReteSwitched.switch.eth[6].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 90 ReteSwitched.switch.eth[6].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 91 ReteSwitched.host7.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 92 ReteSwitched.host7.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 93 ReteSwitched.host7.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 94 ReteSwitched.host8.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 95 ReteSwitched.host8.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 96 ReteSwitched.host8.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 97 ReteSwitched.host8.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr source dataAge(packetReceived)
+attr title "end-to-end delay, vector"
+attr unit s
+vector 98 ReteSwitched.host8.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number, vector"
+vector 99 ReteSwitched.host1.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 100 ReteSwitched.host1.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 101 ReteSwitched.host1.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 102 ReteSwitched.host1.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 103 ReteSwitched.host1.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 104 ReteSwitched.host1.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 105 ReteSwitched.host1.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 106 ReteSwitched.host1.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 107 ReteSwitched.host1.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 108 ReteSwitched.host1.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 109 ReteSwitched.switch.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 110 ReteSwitched.switch.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 111 ReteSwitched.host2.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 112 ReteSwitched.host2.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 113 ReteSwitched.host2.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 114 ReteSwitched.host2.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 115 ReteSwitched.host2.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 116 ReteSwitched.host2.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 117 ReteSwitched.host2.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 118 ReteSwitched.host2.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 119 ReteSwitched.host2.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 120 ReteSwitched.host2.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 121 ReteSwitched.switch.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 122 ReteSwitched.switch.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 123 ReteSwitched.host5.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 124 ReteSwitched.host5.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 125 ReteSwitched.host5.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 126 ReteSwitched.host5.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 127 ReteSwitched.host5.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 128 ReteSwitched.host5.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 129 ReteSwitched.host5.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 130 ReteSwitched.host5.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 131 ReteSwitched.host5.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 132 ReteSwitched.host5.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 133 ReteSwitched.switch.eth[4].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 134 ReteSwitched.switch.eth[4].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 135 ReteSwitched.host3.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 136 ReteSwitched.host3.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 137 ReteSwitched.host3.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 138 ReteSwitched.host3.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 139 ReteSwitched.host3.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 140 ReteSwitched.host3.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 141 ReteSwitched.host3.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 142 ReteSwitched.host3.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 143 ReteSwitched.host3.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 144 ReteSwitched.host3.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 145 ReteSwitched.switch.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 146 ReteSwitched.switch.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 147 ReteSwitched.host4.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 148 ReteSwitched.host4.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 149 ReteSwitched.host4.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 150 ReteSwitched.host4.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 151 ReteSwitched.host4.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 152 ReteSwitched.host4.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 153 ReteSwitched.host4.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 154 ReteSwitched.host4.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 155 ReteSwitched.host4.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 156 ReteSwitched.host4.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 157 ReteSwitched.switch.eth[3].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 158 ReteSwitched.switch.eth[3].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 159 ReteSwitched.host6.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 160 ReteSwitched.host6.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 161 ReteSwitched.host6.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 162 ReteSwitched.host6.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 163 ReteSwitched.host6.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 164 ReteSwitched.host6.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 165 ReteSwitched.host6.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 166 ReteSwitched.host6.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 167 ReteSwitched.host6.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 168 ReteSwitched.host6.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 169 ReteSwitched.switch.eth[5].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 170 ReteSwitched.switch.eth[5].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 171 ReteSwitched.host8.app[0] throughput:vector ETV
+attr source throughput(packetReceived)
+attr title "throughput, vector"
+attr unit bps
+0	34780 9978 4 126011 0.005448831774 12.745448831774 365 100 100 36500 3650000
+1	44758 9978 6 126012 0.005448831774 12.745448831774 365 108 108 39420 4257360
+2	54736 22 7 7 0.005448831774 0.005448831774 1 28 28 28 784
+3	54758 10001 8 126014 0.005448831774 12.745448831774 366 28 128 46748 5980944
+4	64759 10001 9 126015 0.005448831774 12.745448831774 366 46 146 53336 7782456
+5	74760 10001 9 126015 0.005448831774 12.745448831774 366 64 146 53354 7784436
+6	84761 18540 9 126015 0.005448831774 12.745448831774 732 0 1 366 366
+7	103301 10001 9 126015 0.005448831774 12.745448831774 366 64 146 53354 7784436
+8	113302 9270 9 126015 0.005448831774 12.745448831774 366 0 0 0 0
+9	122572 10002 10 126016 0.005448889374 12.745448954974 366 64 146 53354 7784436
+10	132574 10368 13 126019 0.005449889374 12.745449954974 366 64 146 53354 7784436
+11	142942 10368 13 126019 0.005449889374 12.745449954974 366 64 146 53354 7784436
+12	153310 173 15 519 0.005449889374 0.008580513798 7 64 64 448 28672
+13	153483 173 15 519 0.005449889374 0.008580513798 7 64 64 448 28672
+14	153656 332 15 519 0.005449889374 0.008580513798 14 0 1 7 7
+15	153988 173 15 519 0.005449889374 0.008580513798 7 64 64 448 28672
+16	154161 166 15 519 0.005449889374 0.008580513798 7 0 0 0 0
+17	154327 172 16 520 0.005449889374 0.008580513798 7 64 64 448 28672
+18	154499 172 16 520 0.005449889374 0.008580513798 7 64 64 448 28672
+19	154671 330 16 520 0.005449889374 0.008580513798 14 0 1 7 7
+20	155001 172 16 520 0.005449889374 0.008580513798 7 64 64 448 28672
+21	155173 165 16 520 0.005449889374 0.008580513798 7 0 0 0 0
+22	155338 173 17 521 0.005449889374 0.008580513798 7 64 64 448 28672
+23	155511 173 17 521 0.005449889374 0.008580513798 7 64 64 448 28672
+24	155684 332 17 521 0.005449889374 0.008580513798 14 0 1 7 7
+25	156016 173 17 521 0.005449889374 0.008580513798 7 64 64 448 28672
+26	156189 166 17 521 0.005449889374 0.008580513798 7 0 0 0 0
+27	156355 173 18 522 0.005449889374 0.008580513798 7 64 64 448 28672
+28	156528 173 18 522 0.005449889374 0.008580513798 7 64 64 448 28672
+29	156701 332 18 522 0.005449889374 0.008580513798 14 0 1 7 7
+30	157033 173 18 522 0.005449889374 0.008580513798 7 64 64 448 28672
+31	157206 166 18 522 0.005449889374 0.008580513798 7 0 0 0 0
+32	157372 173 19 523 0.005449889374 0.008580513798 7 64 64 448 28672
+33	157545 173 19 523 0.005449889374 0.008580513798 7 64 64 448 28672
+34	157718 332 19 523 0.005449889374 0.008580513798 14 0 1 7 7
+35	158050 173 19 523 0.005449889374 0.008580513798 7 64 64 448 28672
+36	158223 166 19 523 0.005449889374 0.008580513798 7 0 0 0 0
+37	158389 173 20 569 0.005449889374 0.008582628998 7 64 64 448 28672
+38	158562 173 20 569 0.005449889374 0.008582628998 7 64 64 448 28672
+39	158735 332 20 569 0.005449889374 0.008582628998 14 0 1 7 7
+40	159067 173 20 569 0.005449889374 0.008582628998 7 64 64 448 28672
+41	159240 166 20 569 0.005449889374 0.008582628998 7 0 0 0 0
+42	159406 186906 21 126192 0.005449889374 12.758580579398 6625 64 146 966676 141097960
+43	346312 186906 21 126192 0.005449889374 12.758580579398 6625 64 146 966676 141097960
+44	533218 347326 21 126192 0.005449889374 12.758580579398 13250 0 1 6625 6625
+45	880544 186906 21 126192 0.005449889374 12.758580579398 6625 64 146 966676 141097960
+46	1067450 173663 21 126192 0.005449889374 12.758580579398 6625 0 0 0 0
+47	1241113 173 23 527 0.005449946974 0.008580571398 7 64 64 448 28672
+48	1241286 173 24 528 0.005449946974 0.008580571398 7 64 64 448 28672
+49	1241459 173 25 529 0.005449946974 0.008580571398 7 64 64 448 28672
+50	1241632 173 26 530 0.005449946974 0.008580571398 7 64 64 448 28672
+51	1241805 173 27 531 0.005449946974 0.008580571398 7 64 64 448 28672
+52	1241978 173 28 571 0.005449946974 0.008582686598 7 64 64 448 28672
+53	1242151 186906 29 126194 0.005449946974 12.758580702598 6625 64 146 966676 141097960
+54	1429057 173 37 541 0.005450946974 0.008581571398 7 64 64 448 28672
+55	1429230 173 37 541 0.005450946974 0.008581571398 7 64 64 448 28672
+56	1429403 173 38 542 0.005450946974 0.008581571398 7 64 64 448 28672
+57	1429576 173 38 542 0.005450946974 0.008581571398 7 64 64 448 28672
+58	1429749 173 39 543 0.005450946974 0.008581571398 7 64 64 448 28672
+59	1429922 173 39 543 0.005450946974 0.008581571398 7 64 64 448 28672
+60	1430095 173 40 544 0.005450946974 0.008581571398 7 64 64 448 28672
+61	1430268 173 40 544 0.005450946974 0.008581571398 7 64 64 448 28672
+62	1430441 173 41 545 0.005450946974 0.008581571398 7 64 64 448 28672
+63	1430614 173 41 545 0.005450946974 0.008581571398 7 64 64 448 28672
+64	1430787 173 42 573 0.005450946974 0.008583686598 7 64 64 448 28672
+65	1430960 173 42 573 0.005450946974 0.008583686598 7 64 64 448 28672
+66	1431133 186906 43 126196 0.005450946974 12.758581702598 6625 64 146 966676 141097960
+67	1618039 186906 43 126196 0.005450946974 12.758581702598 6625 64 146 966676 141097960
+68	1804945 173 44 548 0.005450946974 0.008581571398 7 46 46 322 14812
+69	1805118 173 45 549 0.005450946974 0.008581571398 7 46 46 322 14812
+70	1805291 173 46 550 0.005450946974 0.008581571398 7 46 46 322 14812
+71	1805464 173 47 551 0.005450946974 0.008581571398 7 46 46 322 14812
+72	1805637 173 48 552 0.005450946974 0.008581571398 7 46 46 322 14812
+73	1805810 173 49 574 0.005450946974 0.008583686598 7 46 46 322 14812
+74	1805983 186906 50 126197 0.005450946974 12.758581702598 6625 46 128 847426 108444124
+75	1992889 173 57 561 0.005450946974 0.008581571398 7 28 28 196 5488
+76	1993062 173 58 562 0.005450946974 0.008581571398 7 28 28 196 5488
+77	1993235 173 59 563 0.005450946974 0.008581571398 7 46 46 322 14812
+78	1993408 173 59 563 0.005450946974 0.008581571398 7 64 64 448 28672
+79	1993581 332 59 563 0.005450946974 0.008581571398 14 0 1 7 7
+80	1993913 173 59 563 0.005450946974 0.008581571398 7 64 64 448 28672
+81	1994086 166 59 563 0.005450946974 0.008581571398 7 0 0 0 0
+82	1994252 173 60 564 0.005451004574 0.008581628998 7 64 64 448 28672
+83	1994425 173 63 567 0.005452004574 0.008582628998 7 64 64 448 28672
+84	1994598 173 63 567 0.005452004574 0.008582628998 7 64 64 448 28672
+85	1994771 173 65 524 0.005452004574 0.008580513798 7 64 64 448 28672
+86	1994944 173 65 524 0.005452004574 0.008580513798 7 64 64 448 28672
+87	1995117 332 65 524 0.005452004574 0.008580513798 14 0 1 7 7
+88	1995449 173 65 524 0.005452004574 0.008580513798 7 64 64 448 28672
+89	1995622 166 65 524 0.005452004574 0.008580513798 7 0 0 0 0
+90	1995788 173 67 532 0.005452062174 0.008580571398 7 64 64 448 28672
+91	1995961 173 69 546 0.005453062174 0.008581571398 7 64 64 448 28672
+92	1996134 173 69 546 0.005453062174 0.008581571398 7 64 64 448 28672
+93	1996307 173 70 553 0.005453062174 0.008581571398 7 46 46 322 14812
+94	1996480 186733 86 126199 0.005455308574 12.758581702598 6618 108 108 714744 77192352
+95	2183213 192244 86 126199 0.005455308574 12.758581702598 6618 1 6618 21902271 96640120409
+96	2375457 186733 87 126200 0.005455308574 12.758581702598 6618 100 100 661800 66180000
+97	2562190 233059 87 126200 0.005455308574 12.758581702598 6618 2.2464e-06 6.4768e-06 0.014896287999998 3.365481754624e-08
+98	2795249 187790 87 126200 0.005455308574 12.758581702598 6618 0 2550 4918113 6599679875
+99	2983039 72336 88 126201 0.005488135023 12.760488135023 2552 100 100 255200 25520000
+100	3055375 74888 90 126202 0.005488135023 12.760488135023 2552 108 108 275616 29766528
+101	3130263 25 91 91 0.005488135023 0.005488135023 1 28 28 28 784
+102	3130288 74914 92 126204 0.005488135023 12.760488135023 2553 28 128 326684 41812752
+103	3205202 74914 93 126205 0.005488135023 12.760488135023 2553 46 146 372638 54400548
+104	3280116 74914 93 126205 0.005488135023 12.760488135023 2553 64 146 372656 54402528
+105	3355030 139618 93 126205 0.005488135023 12.760488135023 5106 0 1 2553 2553
+106	3494648 74914 93 126205 0.005488135023 12.760488135023 2553 64 146 372656 54402528
+107	3569562 69809 93 126205 0.005488135023 12.760488135023 2553 0 0 0 0
+108	3639371 74914 94 126206 0.005488192623 12.760488258223 2553 64 146 372656 54402528
+109	3714285 74883 97 126114 0.005489192623 12.755489258223 2552 64 146 372510 54381212
+110	3789168 74883 97 126114 0.005489192623 12.755489258223 2552 64 146 372510 54381212
+111	3864051 37444 172 126125 0.005928446164 12.755928446164 1276 100 100 127600 12760000
+112	3901495 37444 174 126126 0.005928446164 12.755928446164 1276 108 108 137808 14883264
+113	3938939 26 175 175 0.005928446164 0.005928446164 1 28 28 28 784
+114	3938965 37470 176 126128 0.005928446164 12.755928446164 1277 28 128 163356 20906768
+115	3976435 37470 177 126129 0.005928446164 12.755928446164 1277 46 146 186342 27201332
+116	4013905 37470 177 126129 0.005928446164 12.755928446164 1277 64 146 186360 27203312
+117	4051375 69834 177 126129 0.005928446164 12.755928446164 2554 0 1 1277 1277
+118	4121209 37470 177 126129 0.005928446164 12.755928446164 1277 64 146 186360 27203312
+119	4158679 34917 177 126129 0.005928446164 12.755928446164 1277 0 0 0 0
+120	4193596 37470 178 126130 0.005928503764 12.755928569364 1277 64 146 186360 27203312
+121	4231066 37470 181 126133 0.005929503764 12.755929569364 1277 64 146 186360 27203312
+122	4268536 37470 181 126133 0.005929503764 12.755929569364 1277 64 146 186360 27203312
+123	4306006 14996 256 126144 0.006027633704 12.756027633704 511 100 100 51100 5110000
+124	4321002 14996 258 126145 0.006027633704 12.756027633704 511 108 108 55188 5960304
+125	4335998 26 259 259 0.006027633704 0.006027633704 1 28 28 28 784
+126	4336024 15022 260 126147 0.006027633704 12.756027633704 512 28 128 65436 8373008
+127	4351046 15022 261 126148 0.006027633704 12.756027633704 512 46 146 74652 10894592
+128	4366068 15022 261 126148 0.006027633704 12.756027633704 512 64 146 74670 10896572
+129	4381090 27998 261 126148 0.006027633704 12.756027633704 1024 0 1 512 512
+130	4409088 15022 261 126148 0.006027633704 12.756027633704 512 64 146 74670 10896572
+131	4424110 13999 261 126148 0.006027633704 12.756027633704 512 0 0 0 0
+132	4438109 15022 262 126149 0.006027691304 12.756027756904 512 64 146 74670 10896572
+133	4453131 15022 265 126152 0.006028691304 12.756028756904 512 64 146 74670 10896572
+134	4468153 15022 265 126152 0.006028691304 12.756028756904 512 64 146 74670 10896572
+135	4483175 24120 340 126163 0.00715189365 12.75715189365 851 100 100 85100 8510000
+136	4507295 24120 342 126164 0.00715189365 12.75715189365 851 108 108 91908 9926064
+137	4531415 25 343 343 0.00715189365 0.00715189365 1 28 28 28 784
+138	4531440 24145 344 126166 0.00715189365 12.75715189365 852 28 128 108956 13943568
+139	4555585 24145 345 126167 0.00715189365 12.75715189365 852 46 146 124292 18142032
+140	4579730 24145 345 126167 0.00715189365 12.75715189365 852 64 146 124310 18144012
+141	4603875 44884 345 126167 0.00715189365 12.75715189365 1704 0 1 852 852
+142	4648759 24145 345 126167 0.00715189365 12.75715189365 852 64 146 124310 18144012
+143	4672904 22442 345 126167 0.00715189365 12.75715189365 852 0 0 0 0
+144	4695346 24145 346 126168 0.00715195125 12.75715201685 852 64 146 124310 18144012
+145	4719491 24145 349 126171 0.00715295125 12.75715301685 852 64 146 124310 18144012
+146	4743636 24145 349 126171 0.00715295125 12.75715301685 852 64 146 124310 18144012
+147	4767781 18721 424 126068 0.008442657441 12.748442657441 638 100 100 63800 6380000
+148	4786502 18721 426 126069 0.008442657441 12.748442657441 638 108 108 68904 7441632
+149	4805223 26 427 427 0.008442657441 0.008442657441 1 28 28 28 784
+150	4805249 18748 428 126071 0.008442657441 12.748442657441 639 28 128 81692 10453776
+151	4823997 18748 429 126072 0.008442657441 12.748442657441 639 46 146 93194 13601724
+152	4842745 18748 429 126072 0.008442657441 12.748442657441 639 64 146 93212 13603704
+153	4861493 34942 429 126072 0.008442657441 12.748442657441 1278 0 1 639 639
+154	4896435 18748 429 126072 0.008442657441 12.748442657441 639 64 146 93212 13603704
+155	4915183 17471 429 126072 0.008442657441 12.748442657441 639 0 0 0 0
+156	4932654 18748 430 126073 0.008442715041 12.748442780641 639 64 146 93212 13603704
+157	4951402 18748 433 126076 0.008443715041 12.748443780641 639 64 146 93212 13603704
+158	4970150 18748 433 126076 0.008443715041 12.748443780641 639 64 146 93212 13603704
+159	4988898 12501 508 126182 0.008579456198 12.758579456198 426 100 100 42600 4260000
+160	5001399 12501 510 126183 0.008579456198 12.758579456198 426 108 108 46008 4968864
+161	5013900 26 511 511 0.008579456198 0.008579456198 1 28 28 28 784
+162	5013926 12527 512 126185 0.008579456198 12.758579456198 427 28 128 54556 6980368
+163	5026453 12527 513 126186 0.008579456198 12.758579456198 427 46 146 62242 9082732
+164	5038980 12527 513 126186 0.008579456198 12.758579456198 427 64 146 62260 9084712
+165	5051507 23348 513 126186 0.008579456198 12.758579456198 854 0 1 427 427
+166	5074855 12527 513 126186 0.008579456198 12.758579456198 427 64 146 62260 9084712
+167	5087382 11674 513 126186 0.008579456198 12.758579456198 427 0 0 0 0
+168	5099056 12527 514 126187 0.008579513798 12.758579579398 427 64 146 62260 9084712
+169	5111583 12527 517 126190 0.008580513798 12.758580579398 427 64 146 62260 9084712
+170	5124110 12527 517 126190 0.008580513798 12.758580579398 427 64 146 62260 9084712
+171	5136637 2688 1465 125611 0.1 12.7 127 400000 424000 52688000 21864832000000
+

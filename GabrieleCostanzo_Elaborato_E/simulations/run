@@ -1,0 +1,4 @@
+#!/bin/sh
+cd `dirname $0`
+../src/gabrielecostanzo_elaborato_e -n .:../src $*
+# for shared lib, use: opp_run -l ../src/gabrielecostanzo_elaborato_e -n .:../src $*
