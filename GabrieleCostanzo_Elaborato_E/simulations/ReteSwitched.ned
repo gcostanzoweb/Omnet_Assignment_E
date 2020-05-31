@@ -18,16 +18,55 @@ package gabrielecostanzo_elaborato_e.simulations;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.node.ethernet.EtherSwitch;
 import inet.node.inet.StandardHost;
+import inet.queueing.classifier.WrrClassifier;
+import inet.queueing.classifier.PriorityClassifier;
+import inet.queueing.queue.PacketQueue;
+import inet.queueing.queue.CompoundPacketQueue;
+import inet.queueing.queue.PriorityQueue;
+import inet.queueing.scheduler.PriorityScheduler;
 import inet.visualizer.integrated.IntegratedMultiVisualizer;
 import inet.networklayer.ipv4.RoutingTableRecorder;
 import inet.physicallayer.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
 import inet.common.misc.ThruputMeteringChannel;
+
+// Taken from inet/tutorials/queueing
+module CompoundPriorityQueue extends CompoundPacketQueue
+{
+    parameters:
+        @class(::inet::queueing::CompoundPacketQueue);
+    submodules:
+        classifier: WrrClassifier {
+            @display("p=100,100");
+        }
+        queue1: PacketQueue {
+            @display("p=325,100");
+        }
+        queue2: PacketQueue {
+            @display("p=325,225");
+        }
+        queue3: PacketQueue {
+            @display("p=475,350");
+        }          
+        scheduler: PriorityScheduler {
+            @display("p=550,100");
+        }
+    connections:
+        in --> { @display("m=w"); } --> classifier.in;
+        classifier.out++ --> queue1.in;
+        classifier.out++ --> queue2.in;
+        classifier.out++ --> queue3.in;
+        queue1.out --> scheduler.in++;
+        queue2.out --> scheduler.in++;
+        queue3.out --> scheduler.in++;
+        scheduler.out --> { @display("m=e"); } --> out;
+}
 
 network ReteSwitched
 {
     parameters:
         @display("bgb=1230.762,856.138");
         int customDatarate;
+        int numQ;
     types:
         channel C extends ThruputMeteringChannel
         {
@@ -94,6 +133,26 @@ network ReteSwitched
             gates:
                 ethg[8];
         }
+        //queue: PriorityQueue {
+        //    parameters:
+        //        @display("p=325,100,column,125");
+        //        numQueues = numQ;
+	    //        scheduler: PriorityScheduler {
+		//            parameters:
+		//                @display("p=550,100");
+	    //    	}
+	    //    	classifier: PriorityClassifier {
+		//            parameters:
+		//                @display("p=100,100");
+		//        }
+		//}
+		
+		cQueue: CompoundPriorityQueue {
+			parameters:
+				@display("p=100,100");
+		}
+        
+        
     connections:
         switch.ethg[0] <--> C <--> host1.ethg[0];
         switch.ethg[1] <--> C <--> host2.ethg[0];
@@ -102,6 +161,12 @@ network ReteSwitched
         switch.ethg[4] <--> C <--> host5.ethg[0];
         switch.ethg[5] <--> C <--> host6.ethg[0];
         switch.ethg[6] <--> C <--> host7.ethg[0];
-        switch.ethg[7] <--> C <--> host8.ethg[0];
+        switch.ethg$i[7] <-- C <-- host8.ethg$o[0];
+        //switch.ethg$o[7] --> C --> classifier.in;
+        //classifier.out++ --> queue.in;
+        //queue.out --> scheduler.in++;
+        //scheduler.out --> C --> host8.ethg$i[0];
+        switch.ethg$o[7] --> C --> cQueue.in;
+        cQueue.out --> C --> host8.ethg$i[0];
 }
 
