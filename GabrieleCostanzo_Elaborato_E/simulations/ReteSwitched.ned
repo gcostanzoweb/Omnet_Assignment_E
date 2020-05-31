@@ -18,7 +18,8 @@ package gabrielecostanzo_elaborato_e.simulations;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.node.ethernet.EtherSwitch;
 import inet.node.inet.StandardHost;
-import inet.queueing.classifier.WrrClassifier;
+import inet.networklayer.diffserv.BehaviorAggregateClassifier;
+import inet.queueing.classifier.ContentBasedClassifier;
 import inet.queueing.classifier.PriorityClassifier;
 import inet.queueing.queue.PacketQueue;
 import inet.queueing.queue.CompoundPacketQueue;
@@ -35,7 +36,7 @@ module CompoundPriorityQueue extends CompoundPacketQueue
     parameters:
         @class(::inet::queueing::CompoundPacketQueue);
     submodules:
-        classifier: WrrClassifier {
+        classifier: BehaviorAggregateClassifier {
             @display("p=100,100");
         }
         queue1: PacketQueue {
@@ -46,18 +47,23 @@ module CompoundPriorityQueue extends CompoundPacketQueue
         }
         queue3: PacketQueue {
             @display("p=475,350");
-        }          
+        }
+        queue4: PacketQueue {
+            @display("p=475,350");
+        }       
         scheduler: PriorityScheduler {
             @display("p=550,100");
         }
-    connections:
+    connections allowunconnected:
         in --> { @display("m=w"); } --> classifier.in;
         classifier.out++ --> queue1.in;
         classifier.out++ --> queue2.in;
         classifier.out++ --> queue3.in;
+        classifier.defaultOut --> queue4.in;
         queue1.out --> scheduler.in++;
         queue2.out --> scheduler.in++;
         queue3.out --> scheduler.in++;
+        queue4.out --> scheduler.in++;
         scheduler.out --> { @display("m=e"); } --> out;
 }
 
