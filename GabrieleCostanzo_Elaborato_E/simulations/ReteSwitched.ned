@@ -147,10 +147,10 @@ network ReteSwitched
 		//        }
 		//}
 		
-		cQueue: CompoundPriorityQueue {
-			parameters:
-				@display("p=100,100");
-		}
+		//cQueue: CompoundPriorityQueue {
+		//	parameters:
+		//		@display("p=100,100");
+		//}
         
         
     connections:
@@ -161,12 +161,13 @@ network ReteSwitched
         switch.ethg[4] <--> C <--> host5.ethg[0];
         switch.ethg[5] <--> C <--> host6.ethg[0];
         switch.ethg[6] <--> C <--> host7.ethg[0];
-        switch.ethg$i[7] <-- C <-- host8.ethg$o[0];
+        
+        switch.ethg[7] <--> C <--> host8.ethg[0];
+        //switch.ethg$i[7] <-- C <-- host8.ethg$o[0];
         //switch.ethg$o[7] --> C --> classifier.in;
         //classifier.out++ --> queue.in;
         //queue.out --> scheduler.in++;
         //scheduler.out --> C --> host8.ethg$i[0];
-        switch.ethg$o[7] --> C --> cQueue.in;
-        cQueue.out --> C --> host8.ethg$i[0];
+        //switch.ethg$o[7] --> C --> host8.ethg$i[0];
 }
 
