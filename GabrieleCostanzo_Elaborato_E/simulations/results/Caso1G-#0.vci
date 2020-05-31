@@ -1,0 +1,1300 @@
+file 35731183 1590958021                                        
+version 2
+run Caso1G-0-20200531-22:45:56-7756
+attr configname Caso1G
+attr datetime 20200531-22:45:56
+attr experiment Caso1G
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsf ""
+attr measurement ""
+attr network ReteSwitched
+attr processid 7756
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param **.customDatarate 1
+param **.host[*].numApps 1
+param **.sinkHost.numApps 1
+param **.sinkHost.app[0].typename "\"UdpSink\""
+param **.sinkHost.app[0].localPort 8000
+param **.host[*].app[0].typename "\"UdpBasicApp\""
+param **.host[*].app[0].destPort 8000
+param **.host[*].app[0].destAddresses "\"sinkHost\""
+param **.host[*].app[0].messageLength "intuniform(100B, 1500B)"
+param **.host[*].app[0].startTime "uniform(0s, 10ms)"
+param **.host[0].app[0].dscp 0x08
+param **.host[1].app[0].dscp 0x0A
+param **.host[2].app[0].dscp 0x0C
+param **.host[3].app[0].dscp 0x0E
+param **.host[4].app[0].dscp 0x10
+param **.host[5].app[0].dscp 0x12
+param **.host[6].app[0].dscp 0x14
+param **.host[0].app[0].sendInterval 5ms
+param **.host[1].app[0].sendInterval 10ms
+param **.host[2].app[0].sendInterval 15ms
+param **.host[3].app[0].sendInterval 20ms
+param **.host[4].app[0].sendInterval 25ms
+param **.host[5].app[0].sendInterval 30ms
+param **.host[6].app[0].sendInterval 35ms
+param **.host[0].app[0].packetName "\"UDP_Data_Sender0\""
+param **.host[1].app[0].packetName "\"UDP_Data_Sender1\""
+param **.host[2].app[0].packetName "\"UDP_Data_Sender2\""
+param **.host[3].app[0].packetName "\"UDP_Data_Sender3\""
+param **.host[4].app[0].packetName "\"UDP_Data_Sender4\""
+param **.host[5].app[0].packetName "\"UDP_Data_Sender5\""
+param **.host[6].app[0].packetName "\"UDP_Data_Sender6\""
+param **.switch.relayUnit.typename "\"MacRelayUnit\""
+param **.switch.eth[7].mac.queue.typename "\"CompoundPriorityQueue\""
+param **.switch.eth[7].mac.queue.classifier.typename "\"BehaviorAggregateClassifier\""
+param **.switch.eth[7].mac.queue.classifier.dscps "\"0x08 0x0A 0x0C 0x0E 0x10 0x12 0x14\""
+
+vector 0 ReteSwitched.host[6].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 1 ReteSwitched.host[6].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 2 ReteSwitched.host[6].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 3 ReteSwitched.host[6].eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 4 ReteSwitched.host[6].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 5 ReteSwitched.host[6].eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 6 ReteSwitched.host[6].eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 7 ReteSwitched.host[6].eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 8 ReteSwitched.host[6].eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 9 ReteSwitched.host[6].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 10 ReteSwitched.switch.eth[6].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 11 ReteSwitched.switch.eth[6].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 12 ReteSwitched.switch.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 13 ReteSwitched.switch.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 14 ReteSwitched.switch.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 15 ReteSwitched.switch.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 16 ReteSwitched.switch.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 17 ReteSwitched.switch.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 18 ReteSwitched.switch.eth[1].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 19 ReteSwitched.switch.eth[1].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 20 ReteSwitched.switch.eth[1].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 21 ReteSwitched.switch.eth[1].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 22 ReteSwitched.switch.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 23 ReteSwitched.switch.eth[2].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 24 ReteSwitched.switch.eth[2].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 25 ReteSwitched.switch.eth[2].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 26 ReteSwitched.switch.eth[2].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 27 ReteSwitched.switch.eth[3].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 28 ReteSwitched.switch.eth[3].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 29 ReteSwitched.switch.eth[3].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 30 ReteSwitched.switch.eth[3].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 31 ReteSwitched.switch.eth[3].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 32 ReteSwitched.switch.eth[4].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 33 ReteSwitched.switch.eth[4].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 34 ReteSwitched.switch.eth[4].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 35 ReteSwitched.switch.eth[4].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 36 ReteSwitched.switch.eth[4].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 37 ReteSwitched.switch.eth[5].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 38 ReteSwitched.switch.eth[5].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 39 ReteSwitched.switch.eth[5].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 40 ReteSwitched.switch.eth[5].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 41 ReteSwitched.switch.eth[5].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 42 ReteSwitched.switch.eth[7].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 43 ReteSwitched.switch.eth[7].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr source localSignal(packetPushed)
+attr title "packets pushed, vector(packetBytes)"
+vector 44 ReteSwitched.switch.eth[7].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(localSignal(packetPushed)) - count(localSignal(packetPopped)) - count(localSignal(packetRemoved)) - count(packetDropped)"
+attr title "queue length, vector"
+vector 45 ReteSwitched.switch.eth[7].mac.queue.classifier pkClass:vector ETV
+attr interpolationmode none
+attr source pkClass
+attr title "packet class, vector"
+vector 46 ReteSwitched.switch.eth[7].mac.queue.defQueue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 47 ReteSwitched.switch.eth[7].mac.queue.defQueue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 48 ReteSwitched.switch.eth[7].mac.queue.defQueue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 49 ReteSwitched.switch.eth[7].mac.queue.defQueue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 50 ReteSwitched.switch.eth[7].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 51 ReteSwitched.switch.eth[7].mac.queue.scheduler packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packets popped, vector(packetBytes)"
+vector 52 ReteSwitched.switch.eth[7].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr source localSignal(packetPopped)
+attr title "packets popped, vector(packetBytes)"
+vector 53 ReteSwitched.switch.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 54 ReteSwitched.switch.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 55 ReteSwitched.switch.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 56 ReteSwitched.switch.eth[3].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 57 ReteSwitched.switch.eth[4].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 58 ReteSwitched.switch.eth[5].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 59 ReteSwitched.switch.eth[7].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 60 ReteSwitched.host[0].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 61 ReteSwitched.host[0].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 62 ReteSwitched.host[1].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 63 ReteSwitched.host[1].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 64 ReteSwitched.host[2].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 65 ReteSwitched.host[2].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 66 ReteSwitched.host[3].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 67 ReteSwitched.host[3].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 68 ReteSwitched.host[4].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 69 ReteSwitched.host[4].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 70 ReteSwitched.host[5].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 71 ReteSwitched.host[5].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 72 ReteSwitched.sinkHost.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 73 ReteSwitched.sinkHost.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 74 ReteSwitched.host[0].eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 75 ReteSwitched.host[1].eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 76 ReteSwitched.host[2].eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 77 ReteSwitched.host[3].eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 78 ReteSwitched.host[4].eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 79 ReteSwitched.host[5].eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 80 ReteSwitched.sinkHost.eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 81 ReteSwitched.sinkHost.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr source arpReplySent
+attr title "ARP replies sent, vector(packetBytes)"
+vector 82 ReteSwitched.sinkHost.eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 83 ReteSwitched.sinkHost.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 84 ReteSwitched.sinkHost.eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 85 ReteSwitched.sinkHost.eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 86 ReteSwitched.sinkHost.eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 87 ReteSwitched.sinkHost.eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 88 ReteSwitched.sinkHost.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 89 ReteSwitched.switch.eth[7].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 90 ReteSwitched.switch.eth[7].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 91 ReteSwitched.switch.eth[6].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 92 ReteSwitched.switch.eth[6].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 93 ReteSwitched.switch.eth[6].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 94 ReteSwitched.switch.eth[6].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 95 ReteSwitched.switch.eth[6].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 96 ReteSwitched.switch.eth[6].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 97 ReteSwitched.host[6].eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 98 ReteSwitched.host[6].eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 99 ReteSwitched.host[6].eth[0].encap decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source decapPk
+attr title "packets decapsulated, vector(packetBytes)"
+vector 100 ReteSwitched.switch.eth[7].mac.queue.queue[6] packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 101 ReteSwitched.switch.eth[7].mac.queue.queue[6] queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 102 ReteSwitched.switch.eth[7].mac.queue.queue[6] packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 103 ReteSwitched.switch.eth[7].mac.queue.queue[6] queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 104 ReteSwitched.sinkHost.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 105 ReteSwitched.sinkHost.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 106 ReteSwitched.sinkHost.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 107 ReteSwitched.sinkHost.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr source dataAge(packetReceived)
+attr title "end-to-end delay, vector"
+attr unit s
+vector 108 ReteSwitched.sinkHost.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number, vector"
+vector 109 ReteSwitched.host[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 110 ReteSwitched.host[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 111 ReteSwitched.host[0].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 112 ReteSwitched.host[0].eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 113 ReteSwitched.host[0].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 114 ReteSwitched.host[0].eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 115 ReteSwitched.host[0].eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 116 ReteSwitched.host[0].eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 117 ReteSwitched.host[0].eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 118 ReteSwitched.host[0].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 119 ReteSwitched.switch.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 120 ReteSwitched.switch.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 121 ReteSwitched.switch.eth[7].mac.queue.queue[0] packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 122 ReteSwitched.switch.eth[7].mac.queue.queue[0] queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 123 ReteSwitched.switch.eth[7].mac.queue.queue[0] packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 124 ReteSwitched.switch.eth[7].mac.queue.queue[0] queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 125 ReteSwitched.host[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 126 ReteSwitched.host[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 127 ReteSwitched.host[1].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 128 ReteSwitched.host[1].eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 129 ReteSwitched.host[1].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 130 ReteSwitched.host[1].eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 131 ReteSwitched.host[1].eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 132 ReteSwitched.host[1].eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 133 ReteSwitched.host[1].eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 134 ReteSwitched.host[1].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 135 ReteSwitched.switch.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 136 ReteSwitched.switch.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 137 ReteSwitched.switch.eth[7].mac.queue.queue[1] packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 138 ReteSwitched.switch.eth[7].mac.queue.queue[1] queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 139 ReteSwitched.switch.eth[7].mac.queue.queue[1] packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 140 ReteSwitched.switch.eth[7].mac.queue.queue[1] queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 141 ReteSwitched.host[4].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 142 ReteSwitched.host[4].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 143 ReteSwitched.host[4].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 144 ReteSwitched.host[4].eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 145 ReteSwitched.host[4].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 146 ReteSwitched.host[4].eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 147 ReteSwitched.host[4].eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 148 ReteSwitched.host[4].eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 149 ReteSwitched.host[4].eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 150 ReteSwitched.host[4].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 151 ReteSwitched.switch.eth[4].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 152 ReteSwitched.switch.eth[4].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 153 ReteSwitched.switch.eth[7].mac.queue.queue[4] packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 154 ReteSwitched.switch.eth[7].mac.queue.queue[4] queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 155 ReteSwitched.switch.eth[7].mac.queue.queue[4] packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 156 ReteSwitched.switch.eth[7].mac.queue.queue[4] queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 157 ReteSwitched.host[2].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 158 ReteSwitched.host[2].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 159 ReteSwitched.host[2].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 160 ReteSwitched.host[2].eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 161 ReteSwitched.host[2].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 162 ReteSwitched.host[2].eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 163 ReteSwitched.host[2].eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 164 ReteSwitched.host[2].eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 165 ReteSwitched.host[2].eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 166 ReteSwitched.host[2].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 167 ReteSwitched.switch.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 168 ReteSwitched.switch.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 169 ReteSwitched.switch.eth[7].mac.queue.queue[2] packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 170 ReteSwitched.switch.eth[7].mac.queue.queue[2] queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 171 ReteSwitched.switch.eth[7].mac.queue.queue[2] packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 172 ReteSwitched.switch.eth[7].mac.queue.queue[2] queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 173 ReteSwitched.host[3].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 174 ReteSwitched.host[3].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 175 ReteSwitched.host[3].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 176 ReteSwitched.host[3].eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 177 ReteSwitched.host[3].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 178 ReteSwitched.host[3].eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 179 ReteSwitched.host[3].eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 180 ReteSwitched.host[3].eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 181 ReteSwitched.host[3].eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 182 ReteSwitched.host[3].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 183 ReteSwitched.switch.eth[3].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 184 ReteSwitched.switch.eth[3].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 185 ReteSwitched.switch.eth[7].mac.queue.queue[3] packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 186 ReteSwitched.switch.eth[7].mac.queue.queue[3] queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 187 ReteSwitched.switch.eth[7].mac.queue.queue[3] packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 188 ReteSwitched.switch.eth[7].mac.queue.queue[3] queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 189 ReteSwitched.host[5].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 190 ReteSwitched.host[5].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 191 ReteSwitched.host[5].ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr source arpRequestSent
+attr title "ARP request sent, vector(packetBytes)"
+vector 192 ReteSwitched.host[5].eth[0].encap encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source encapPk
+attr title "packets encapsulated, vector(packetBytes)"
+vector 193 ReteSwitched.host[5].eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, vector(packetBytes)"
+vector 194 ReteSwitched.host[5].eth[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 195 ReteSwitched.host[5].eth[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 196 ReteSwitched.host[5].eth[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 197 ReteSwitched.host[5].eth[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 198 ReteSwitched.host[5].eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets transmitted, vector(packetBytes)"
+vector 199 ReteSwitched.switch.eth[5].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source rxPkOk
+attr title "packets received OK, vector(packetBytes)"
+vector 200 ReteSwitched.switch.eth[5].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 201 ReteSwitched.switch.eth[7].mac.queue.queue[5] packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 202 ReteSwitched.switch.eth[7].mac.queue.queue[5] queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 203 ReteSwitched.switch.eth[7].mac.queue.queue[5] packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 204 ReteSwitched.switch.eth[7].mac.queue.queue[5] queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 205 ReteSwitched.sinkHost.app[0] throughput:vector ETV
+attr source throughput(packetReceived)
+attr title "throughput, vector"
+attr unit bps
+50	40737 885563 22 206821 0.005450407774 20.648450977441 32768 0 1.1536e-05 0.0071980080000001 8.3030965824e-08
+0	926300 23993 4 293305 0.005448831774 29.300448831774 838 101 1497 666999 667092821
+1	950293 24000 7 293306 0.005448831774 29.300448831774 838 109 1505 673703 677818437
+2	974293 22 8 8 0.005448831774 0.005448831774 1 28 28 28 784
+3	974315 24270 9 293309 0.005448831774 29.300448831774 848 21 1500 690671 704786461
+4	998585 24278 10 293311 0.005448831774 29.300448831774 848 39 1518 705935 729925369
+5	1022863 24278 10 293311 0.005448831774 29.300448831774 848 64 1518 706079 729941191
+6	1047141 44554 10 293314 0.005448831774 29.300461135774 1696 0 1 848 848
+7	1091695 24278 10 293314 0.005448831774 29.300461135774 848 64 1518 706079 729941191
+8	1115973 22358 10 293314 0.005448831774 29.300461135774 848 0 1.2304e-05 0.000110736 1.362495744e-09
+9	1138331 24278 11 293315 0.005449407774 29.300461711774 848 64 1518 706079 729941191
+10	1162609 25126 14 293322 0.005450407774 29.300462711774 848 64 1518 706079 729941191
+11	1187735 25126 14 293322 0.005450407774 29.300462711774 848 64 1518 706079 729941191
+12	1212861 173 16 540 0.005450407774 0.008581032198 7 64 64 448 28672
+13	1213034 173 16 540 0.005450407774 0.008581032198 7 64 64 448 28672
+14	1213207 332 16 540 0.005450407774 0.008581032198 14 0 1 7 7
+15	1213539 173 16 540 0.005450407774 0.008581032198 7 64 64 448 28672
+16	1213712 166 16 540 0.005450407774 0.008581032198 7 0 0 0 0
+17	1213878 173 17 541 0.005450407774 0.008581032198 7 64 64 448 28672
+18	1214051 173 17 541 0.005450407774 0.008581032198 7 64 64 448 28672
+19	1214224 332 17 541 0.005450407774 0.008581032198 14 0 1 7 7
+20	1214556 173 17 541 0.005450407774 0.008581032198 7 64 64 448 28672
+21	1214729 166 17 541 0.005450407774 0.008581032198 7 0 0 0 0
+22	1214895 173 18 542 0.005450407774 0.008581032198 7 64 64 448 28672
+23	1215068 173 18 542 0.005450407774 0.008581032198 7 64 64 448 28672
+24	1215241 332 18 542 0.005450407774 0.008581032198 14 0 1 7 7
+25	1215573 173 18 542 0.005450407774 0.008581032198 7 64 64 448 28672
+26	1215746 166 18 542 0.005450407774 0.008581032198 7 0 0 0 0
+27	1215912 173 19 543 0.005450407774 0.008581032198 7 64 64 448 28672
+28	1216085 173 19 543 0.005450407774 0.008581032198 7 64 64 448 28672
+29	1216258 332 19 543 0.005450407774 0.008581032198 14 0 1 7 7
+30	1216590 173 19 543 0.005450407774 0.008581032198 7 64 64 448 28672
+31	1216763 166 19 543 0.005450407774 0.008581032198 7 0 0 0 0
+32	1216929 173 20 544 0.005450407774 0.008581032198 7 64 64 448 28672
+33	1217102 173 20 544 0.005450407774 0.008581032198 7 64 64 448 28672
+34	1217275 332 20 544 0.005450407774 0.008581032198 14 0 1 7 7
+35	1217607 173 20 544 0.005450407774 0.008581032198 7 64 64 448 28672
+36	1217780 166 20 544 0.005450407774 0.008581032198 7 0 0 0 0
+37	1217946 173 21 590 0.005450407774 0.008584184198 7 64 64 448 28672
+38	1218119 173 21 590 0.005450407774 0.008584184198 7 64 64 448 28672
+39	1218292 332 21 590 0.005450407774 0.008584184198 14 0 1 7 7
+40	1218624 173 21 590 0.005450407774 0.008584184198 7 64 64 448 28672
+41	1218797 166 21 590 0.005450407774 0.008584184198 7 0 0 0 0
+42	1218963 457762 22 293500 0.005450407774 29.315930926164 15509 64 1518 12816756 13277253052
+43	1676725 457762 22 293500 0.005450407774 29.315930926164 15509 64 1518 12816756 13277253052
+44	2134487 842296 22 293500 0.005450407774 29.315930926164 31018 0 1 15509 15509
+45	2976783 421155 22 293500 0.005450407774 29.315930926164 15509 -1 6 26309 98959
+46	3397938 173 22 546 0.005450407774 0.008581032198 7 64 64 448 28672
+47	3398111 332 22 546 0.005450407774 0.008581032198 14 0 1 7 7
+48	3398443 173 22 546 0.005450407774 0.008581032198 7 64 64 448 28672
+49	3398616 166 22 546 0.005450407774 0.008581032198 7 0 0 0 0
+50	3398782 385933 206821 293500 20.648450977441 29.315930926164 13759 0 1.1536e-05 0.003149208 3.6327880512e-08
+51	3784715 457762 22 293500 0.005450407774 29.315930926164 15509 64 1518 12816756 13277253052
+52	4242477 457762 22 293500 0.005450407774 29.315930926164 15509 64 1518 12816756 13277253052
+53	4700239 173 24 548 0.005450983774 0.008581608198 7 64 64 448 28672
+54	4700412 173 25 549 0.005450983774 0.008581608198 7 64 64 448 28672
+55	4700585 173 26 550 0.005450983774 0.008581608198 7 64 64 448 28672
+56	4700758 173 27 551 0.005450983774 0.008581608198 7 64 64 448 28672
+57	4700931 173 28 552 0.005450983774 0.008581608198 7 64 64 448 28672
+58	4701104 173 29 592 0.005450983774 0.008584760198 7 64 64 448 28672
+59	4701277 457762 30 293502 0.005450983774 29.315932406164 15509 64 1518 12816756 13277253052
+60	5159039 173 38 562 0.005451983774 0.008582608198 7 64 64 448 28672
+61	5159212 173 38 562 0.005451983774 0.008582608198 7 64 64 448 28672
+62	5159385 173 39 563 0.005451983774 0.008582608198 7 64 64 448 28672
+63	5159558 173 39 563 0.005451983774 0.008582608198 7 64 64 448 28672
+64	5159731 173 40 564 0.005451983774 0.008582608198 7 64 64 448 28672
+65	5159904 173 40 564 0.005451983774 0.008582608198 7 64 64 448 28672
+66	5160077 173 41 565 0.005451983774 0.008582608198 7 64 64 448 28672
+67	5160250 173 41 565 0.005451983774 0.008582608198 7 64 64 448 28672
+68	5160423 173 42 566 0.005451983774 0.008582608198 7 64 64 448 28672
+69	5160596 173 42 566 0.005451983774 0.008582608198 7 64 64 448 28672
+70	5160769 173 43 594 0.005451983774 0.008585760198 7 64 64 448 28672
+71	5160942 173 43 594 0.005451983774 0.008585760198 7 64 64 448 28672
+72	5161115 457762 44 293504 0.005451983774 29.315933406164 15509 64 1518 12816756 13277253052
+73	5618877 457762 44 293504 0.005451983774 29.315933406164 15509 64 1518 12816756 13277253052
+74	6076639 173 45 569 0.005451983774 0.008582608198 7 46 46 322 14812
+75	6076812 173 46 570 0.005451983774 0.008582608198 7 46 46 322 14812
+76	6076985 173 47 571 0.005451983774 0.008582608198 7 46 46 322 14812
+77	6077158 173 48 572 0.005451983774 0.008582608198 7 46 46 322 14812
+78	6077331 173 49 573 0.005451983774 0.008582608198 7 46 46 322 14812
+79	6077504 173 50 595 0.005451983774 0.008585760198 7 46 46 322 14812
+80	6077677 457555 51 293505 0.005451983774 29.315933406164 15509 46 1500 12537594 12820874752
+81	6535232 173 58 582 0.005451983774 0.008582608198 7 28 28 196 5488
+82	6535405 173 59 583 0.005451983774 0.008582608198 7 28 28 196 5488
+83	6535578 173 60 584 0.005451983774 0.008582608198 7 46 46 322 14812
+84	6535751 173 60 584 0.005451983774 0.008582608198 7 64 64 448 28672
+85	6535924 332 60 584 0.005451983774 0.008582608198 14 0 1 7 7
+86	6536256 173 60 584 0.005451983774 0.008582608198 7 64 64 448 28672
+87	6536429 166 60 584 0.005451983774 0.008582608198 7 0 0 0 0
+88	6536595 173 61 585 0.005452559774 0.008583184198 7 64 64 448 28672
+89	6536768 173 64 588 0.005453559774 0.008584184198 7 64 64 448 28672
+90	6536941 173 64 588 0.005453559774 0.008584184198 7 64 64 448 28672
+91	6537114 173 66 545 0.005453559774 0.008581032198 7 64 64 448 28672
+92	6537287 173 66 545 0.005453559774 0.008581032198 7 64 64 448 28672
+93	6537460 332 66 545 0.005453559774 0.008581032198 14 0 1 7 7
+94	6537792 173 66 545 0.005453559774 0.008581032198 7 64 64 448 28672
+95	6537965 166 66 545 0.005453559774 0.008581032198 7 0 0 0 0
+96	6538131 173 68 553 0.005454135774 0.008581608198 7 64 64 448 28672
+97	6538304 173 70 567 0.005455135774 0.008582608198 7 64 64 448 28672
+98	6538477 173 70 567 0.005455135774 0.008582608198 7 64 64 448 28672
+99	6538650 173 71 574 0.005455135774 0.008582608198 7 46 46 322 14812
+100	6538823 25949 84 293324 0.005468343774 29.300462711774 847 64 1518 706015 729937095
+101	6564772 47898 84 293326 0.005468343774 29.300474247774 1694 0 1 847 847
+102	6612670 25949 84 293326 0.005468343774 29.300474247774 847 64 1518 706015 729937095
+103	6638619 24030 84 293326 0.005468343774 29.300474247774 847 0 1.1536e-05 0.000103824 1.197713664e-09
+104	6662649 463966 101 293507 0.005482223774 29.315933406164 15203 108 1508 12223726 12338151822
+105	7126615 477764 101 293507 0.005482223774 29.315933406164 15203 1 15203 115573206 1171411491614
+106	7604379 463875 102 293508 0.005482223774 29.315933406164 15203 100 1500 12102102 12143545198
+107	8068254 557338 102 293508 0.005482223774 29.315933406164 15203 4.464e-06 3.3392e-05 0.2373516 4.351160336e-06
+108	8625592 466082 102 293508 0.005482223774 29.315933406164 15203 0 5862 25978082 80137634716
+109	9091674 179596 103 293471 0.005488135023 29.315488135023 5863 100 1500 4636952 4623559146
+110	9271270 179633 106 293472 0.005488135023 29.315488135023 5863 108 1508 4683856 4698125610
+111	9450903 26 107 107 0.005488135023 0.005488135023 1 28 28 28 784
+112	9450929 183200 108 293474 0.005488135023 29.315488135023 5982 21 1500 4803504 4882619034
+113	9634129 183288 109 293475 0.005488135023 29.315488135023 5982 39 1518 4911180 5057483346
+114	9817417 183288 109 293475 0.005488135023 29.315488135023 5982 64 1518 4912504 5057630060
+115	10000705 338416 109 293475 0.005488135023 29.315488135023 11964 0 1 5982 5982
+116	10339121 183288 109 293475 0.005488135023 29.315488135023 5982 64 1518 4912504 5057630060
+117	10522409 170270 109 293475 0.005488135023 29.315488135023 5982 0 1.2304e-05 0.001451872 1.7863833088e-08
+118	10692679 183288 110 293477 0.005488711023 29.315497087023 5982 64 1518 4912504 5057630060
+119	10875967 183288 113 293479 0.005489711023 29.315498087023 5982 64 1518 4912504 5057630060
+120	11059255 183288 113 293479 0.005489711023 29.315498087023 5982 64 1518 4912504 5057630060
+121	11242543 183262 179 293481 0.005498887023 29.315498087023 5981 64 1518 4912440 5057625964
+122	11425805 338366 179 293481 0.005498887023 29.315498087023 11962 0 1 5981 5981
+123	11764171 183262 179 293481 0.005498887023 29.315498087023 5981 64 1518 4912440 5057625964
+124	11947433 170242 179 293481 0.005498887023 29.315498087023 5981 0 1.1536e-05 0.001361144 1.5700958656e-08
+125	12117675 89857 188 293490 0.005928446164 29.315928446164 2932 100 1500 2334680 2354342584
+126	12207532 89871 191 293491 0.005928446164 29.315928446164 2932 108 1508 2358136 2391885112
+127	12297403 26 192 192 0.005928446164 0.005928446164 1 28 28 28 784
+128	12297429 91584 193 293493 0.005928446164 29.315928446164 2989 21 1500 2417924 2485222056
+129	12389013 91612 194 293494 0.005928446164 29.315928446164 2989 39 1518 2471726 2573235756
+130	12480625 91612 194 293494 0.005928446164 29.315928446164 2989 64 1518 2472465 2573317359
+131	12572237 169096 194 293494 0.005928446164 29.315928446164 5978 0 1 2989 2989
+132	12741333 91612 194 293494 0.005928446164 29.315928446164 2989 64 1518 2472465 2573317359
+133	12832945 85052 194 293494 0.005928446164 29.315928446164 2989 0 1.2304e-05 0.000689024 8.477751296e-09
+134	12917997 91612 195 293496 0.005929022164 29.315929926164 2989 64 1518 2472465 2573317359
+135	13009609 91612 198 293498 0.005930022164 29.315930926164 2989 64 1518 2472465 2573317359
+136	13101221 91612 198 293498 0.005930022164 29.315930926164 2989 64 1518 2472465 2573317359
+137	13192833 91586 264 293500 0.005941774164 29.315930926164 2988 64 1518 2472401 2573313263
+138	13284419 169046 264 293500 0.005941774164 29.315930926164 5976 0 1 2988 2988
+139	13453465 91586 264 293500 0.005941774164 29.315930926164 2988 64 1518 2472401 2573313263
+140	13545051 85026 264 293500 0.005941774164 29.315930926164 2988 0 1.1536e-05 0.000645992 7.451887168e-09
+141	13630077 35954 273 293414 0.006027633704 29.306027633704 1173 100 1500 950833 963129895
+142	13666031 35957 276 293415 0.006027633704 29.306027633704 1173 108 1508 960217 978418295
+143	13701988 26 277 277 0.006027633704 0.006027633704 1 28 28 28 784
+144	13702014 36785 278 293417 0.006027633704 29.306027633704 1201 21 1500 984245 1016073439
+145	13738799 36797 279 293418 0.006027633704 29.306027633704 1201 39 1518 1005863 1051895383
+146	13775596 36797 279 293418 0.006027633704 29.306027633704 1201 64 1518 1006170 1051929490
+147	13812393 67934 279 293418 0.006027633704 29.306027633704 2402 0 1 1201 1201
+148	13880327 36797 279 293418 0.006027633704 29.306027633704 1201 64 1518 1006170 1051929490
+149	13917124 34210 279 293418 0.006027633704 29.306027633704 1201 0 1.2304e-05 0.000332208 4.087487232e-09
+150	13951334 36797 280 293420 0.006028209704 29.306039609704 1201 64 1518 1006170 1051929490
+151	13988131 36797 283 293422 0.006029209704 29.306040609704 1201 64 1518 1006170 1051929490
+152	14024928 36797 283 293422 0.006029209704 29.306040609704 1201 64 1518 1006170 1051929490
+153	14061725 36771 349 293424 0.006040969704 29.306040609704 1200 64 1518 1006106 1051925394
+154	14098496 67884 349 293424 0.006040969704 29.306040609704 2400 0 1 1200 1200
+155	14166380 36771 349 293424 0.006040969704 29.306040609704 1200 64 1518 1006106 1051925394
+156	14203151 34184 349 293424 0.006040969704 29.306040609704 1200 0 1.1536e-05 0.00031144 3.592403072e-09
+157	14237335 57954 358 293509 0.00715189365 29.31715189365 1955 102 1500 1560476 1572073978
+158	14295289 57967 361 293510 0.00715189365 29.31715189365 1955 110 1508 1576116 1597166714
+159	14353256 25 362 362 0.00715189365 0.00715189365 1 28 28 28 784
+160	14353281 59260 363 293512 0.00715189365 29.31715189365 2000 21 1500 1616124 1659253498
+161	14412541 59295 364 293513 0.00715189365 29.31715189365 2000 39 1518 1652124 1718081962
+162	14471836 59295 364 293513 0.00715189365 29.31715189365 2000 64 1518 1652694 1718145210
+163	14531131 109106 364 293513 0.00715189365 29.31715189365 3999 0 1 2000 2000
+164	14640237 59295 364 293513 0.00715189365 29.31715189365 2000 64 1518 1652694 1718145210
+165	14699532 54935 364 293361 0.00715189365 29.30215189365 1999 0 1.2304e-05 0.000541376 6.661090304e-09
+166	14754467 59264 365 293363 0.00715246965 29.30215660565 1999 64 1518 1651274 1716128810
+167	14813731 59265 368 293365 0.00715346965 29.30215760565 1999 64 1518 1651274 1716128810
+168	14872996 59265 368 293365 0.00715346965 29.30215760565 1999 64 1518 1651274 1716128810
+169	14932261 59240 434 293367 0.00716294165 29.30215760565 1998 64 1518 1651210 1716124714
+170	14991501 109032 434 293367 0.00716294165 29.30215760565 3996 0 1 1998 1998
+171	15100533 59240 434 293367 0.00716294165 29.30215760565 1998 64 1518 1651210 1716124714
+172	15159773 54911 434 293367 0.00716294165 29.30215760565 1998 0 1.1536e-05 0.000507568 5.855120128e-09
+173	15214684 44941 443 293433 0.008442657441 29.308442657441 1466 105 1498 1188238 1198119220
+174	15259625 44954 446 293434 0.008442657441 29.308442657441 1466 113 1506 1199966 1217224852
+175	15304579 26 447 447 0.008442657441 0.008442657441 1 28 28 28 784
+176	15304605 45848 448 293436 0.008442657441 29.308442657441 1496 21 1500 1229894 1264599796
+177	15350453 45872 449 293437 0.008442657441 29.308442657441 1496 39 1518 1256822 1309360684
+178	15396325 45872 449 293437 0.008442657441 29.308442657441 1496 64 1518 1257181 1309400583
+179	15442197 84616 449 293437 0.008442657441 29.308442657441 2992 0 1 1496 1496
+180	15526813 45872 449 293437 0.008442657441 29.308442657441 1496 64 1518 1257181 1309400583
+181	15572685 42569 449 293437 0.008442657441 29.308442657441 1496 0 1.2304e-05 0.000356816 4.390264064e-09
+182	15615254 45872 450 293439 0.008443233441 29.308446105441 1496 64 1518 1257181 1309400583
+183	15661126 45872 453 293441 0.008444233441 29.308447105441 1496 64 1518 1257181 1309400583
+184	15706998 45872 453 293441 0.008444233441 29.308447105441 1496 64 1518 1257181 1309400583
+185	15752870 45846 519 293443 0.008455601441 29.308447105441 1495 64 1518 1257117 1309396487
+186	15798716 84566 519 293443 0.008455601441 29.308447105441 2990 0 1 1495 1495
+187	15883282 45846 519 293443 0.008455601441 29.308447105441 1495 64 1518 1257117 1309396487
+188	15929128 42544 519 293443 0.008455601441 29.308447105441 1495 0 1.1536e-05 0.000334544 3.859299584e-09
+189	15971672 29930 528 293229 0.008579456198 29.288579456198 977 100 1500 765298 767115430
+190	16001602 29934 531 293230 0.008579456198 29.288579456198 977 108 1508 773114 779422726
+191	16031536 26 532 532 0.008579456198 0.008579456198 1 28 28 28 784
+192	16031562 30449 533 293232 0.008579456198 29.288579456198 994 24 1500 793002 810014150
+193	16062011 30463 534 293233 0.008579456198 29.288579456198 994 42 1518 810894 838884278
+194	16092474 30463 534 293233 0.008579456198 29.288579456198 994 64 1518 811083 838905559
+195	16122937 56226 534 293233 0.008579456198 29.288579456198 1988 0 1 994 994
+196	16179163 30463 534 293233 0.008579456198 29.288579456198 994 64 1518 811083 838905559
+197	16209626 28257 534 293233 0.008579456198 29.288579456198 994 0 1.2304e-05 0.000196864 2.422214656e-09
+198	16237883 30463 535 293235 0.008580032198 29.288588576198 994 64 1518 811083 838905559
+199	16268346 30463 538 293237 0.008581032198 29.288589576198 994 64 1518 811083 838905559
+200	16298809 30463 538 293237 0.008581032198 29.288589576198 994 64 1518 811083 838905559
+201	16329272 30437 604 293239 0.008589384198 29.288589576198 993 64 1518 811019 838901463
+202	16359709 56176 604 293239 0.008589384198 29.288589576198 1986 0 1 993 993
+203	16415885 30437 604 293239 0.008589384198 29.288589576198 993 64 1518 811019 838901463
+204	16446322 28231 604 293239 0.008589384198 29.288589576198 993 0 1.1536e-05 0.00018456 2.12889984e-09
+205	16474553 6767 1486 293337 0.1 29.3 293 2667840 4091840 967478400 3.210205934016e+15
+50	16481320 918812 293519 500012 29.31716431765 49.985491815023 32768 0 1.1536e-05 0.0070940880000001 8.18310384e-08
+0	17400132 24627 293680 586753 29.335448831774 58.665448831774 839 101 1499 663532 665566102
+1	17424759 24630 293681 586754 29.335448831774 58.665448831774 839 109 1507 670244 676236310
+3	17449389 25203 293683 586756 29.335448831774 58.665448831774 859 21 1500 687424 702457270
+4	17474592 25211 293684 586757 29.335448831774 58.665448831774 859 39 1518 702886 727482850
+5	17499803 25211 293684 586757 29.335448831774 58.665448831774 859 64 1518 703093 727505883
+6	17525014 46386 293684 586757 29.335448831774 58.665448831774 1718 0 1 859 859
+7	17571400 25211 293684 586757 29.335448831774 58.665448831774 859 64 1518 703093 727505883
+8	17596611 23373 293684 586757 29.335448831774 58.665448831774 859 0 1.2304e-05 0.00024608 3.02776832e-09
+9	17619984 25211 293686 586759 29.335452823774 58.665458239774 859 64 1518 703093 727505883
+10	17645195 26070 293688 586761 29.335453823774 58.665459239774 859 64 1518 703093 727505883
+11	17671265 26070 293688 586761 29.335453823774 58.665459239774 859 64 1518 703093 727505883
+42	17697335 469400 293519 586972 29.31716431765 58.685934934164 15523 64 1518 12917094 13434271408
+43	18166735 469400 293519 586972 29.31716431765 58.685934934164 15523 64 1518 12917094 13434271408
+44	18636135 865296 293519 586972 29.31716431765 58.685934934164 31046 0 1 15523 15523
+45	19501431 432648 293519 586972 29.31716431765 58.685934934164 15523 0 6 26388 99362
+50	19934079 387004 500012 586972 49.985491815023 58.685934934164 13801 0 1.1536e-05 0.003045192 3.512574048e-08
+51	20321083 469400 293519 586972 29.31716431765 58.685934934164 15523 64 1518 12917094 13434271408
+52	20790483 469400 293519 586972 29.31716431765 58.685934934164 15523 64 1518 12917094 13434271408
+59	21259883 469400 293521 586974 29.31717574165 58.685940422164 15523 64 1518 12917094 13434271408
+72	21729283 469400 293523 586976 29.31717674165 58.685941422164 15523 64 1518 12917094 13434271408
+73	22198683 469370 293523 586957 29.31717674165 58.685506423023 15522 64 1518 12916416 13433811724
+80	22668053 469161 293524 586958 29.31717674165 58.685506423023 15522 46 1500 12637020 12973849876
+100	23137214 26929 293690 586763 29.335453823774 58.665459239774 859 64 1518 703093 727505883
+101	23164143 49822 293690 586763 29.335453823774 58.665459239774 1718 0 1 859 859
+102	23213965 26929 293690 586763 29.335453823774 58.665459239774 859 64 1518 703093 727505883
+103	23240894 25091 293690 586763 29.335453823774 58.665459239774 859 0 1.1536e-05 0.000230704 2.661216896e-09
+104	23265985 475737 293526 586960 29.31717674165 58.685506423023 15229 108 1508 12323234 12487213474
+105	23741722 500599 293526 586960 29.31717674165 58.685506423023 15229 15204 30432 347495322 8223477160626
+106	24242321 475654 293527 586961 29.31717674165 58.685506423023 15229 100 1500 12201402 12291016386
+107	24717975 569251 293527 586961 29.31717674165 58.685506423023 15229 4.464e-06 2.7104e-05 0.238966544 4.39653733952e-06
+108	25287226 486922 293527 586961 29.31717674165 58.685506423023 15229 838 11736 78133733 562818564111
+109	25774148 184183 293547 586943 29.320488135023 58.685488135023 5874 100 1500 4682260 4688072846
+110	25958331 184216 293548 586944 29.320488135023 58.685488135023 5874 108 1508 4729252 4763364942
+112	26142547 187577 293550 586946 29.320488135023 58.685488135023 5984 21 1500 4848932 4950491582
+113	26330124 187665 293551 586947 29.320488135023 58.685488135023 5984 39 1518 4956644 5126991950
+114	26517789 187665 293551 586947 29.320488135023 58.685488135023 5984 64 1518 4958019 5127143167
+115	26705454 347072 293551 586947 29.320488135023 58.685488135023 11968 0 1 5984 5984
+116	27052526 187665 293551 586947 29.320488135023 58.685488135023 5984 64 1518 4958019 5127143167
+117	27240191 174526 293551 586947 29.320488135023 58.685488135023 5984 0 1.2304e-05 0.00135344 1.665272576e-08
+118	27414717 187665 293553 586949 29.320497207023 58.685496279023 5984 64 1518 4958019 5127143167
+119	27602382 187665 293555 586951 29.320498207023 58.685497279023 5984 64 1518 4958019 5127143167
+120	27790047 187665 293555 586951 29.320498207023 58.685497279023 5984 64 1518 4958019 5127143167
+121	27977712 187665 293557 586953 29.320498207023 58.685497279023 5984 64 1518 4958019 5127143167
+122	28165377 347072 293557 586953 29.320498207023 58.685497279023 11968 0 1 5984 5984
+123	28512449 187665 293557 586953 29.320498207023 58.685497279023 5984 64 1518 4958019 5127143167
+124	28700114 174521 293557 586953 29.320498207023 58.685497279023 5984 0 1.1536e-05 0.001268848 1.4636140032e-08
+125	28874635 92132 293585 586962 29.325928446164 58.685928446164 2937 101 1500 2374276 2392543834
+126	28966767 92138 293586 586963 29.325928446164 58.685928446164 2937 109 1508 2397772 2430720218
+128	29058905 93953 293588 586965 29.325928446164 58.685928446164 2996 21 1500 2457692 2525266138
+129	29152858 93994 293589 586966 29.325928446164 58.685928446164 2996 39 1518 2511620 2614713754
+130	29246852 93994 293589 586966 29.325928446164 58.685928446164 2996 64 1518 2512291 2614788675
+131	29340846 173768 293589 586966 29.325928446164 58.685928446164 5992 0 1 2996 2996
+132	29514614 93994 293589 586966 29.325928446164 58.685928446164 2996 64 1518 2512291 2614788675
+133	29608608 87415 293589 586966 29.325928446164 58.685928446164 2996 0 1.2304e-05 0.000725936 8.931916544e-09
+134	29696023 93994 293591 586968 29.325939990164 58.685933934164 2996 64 1518 2512291 2614788675
+135	29790017 93994 293593 586970 29.325940990164 58.685934934164 2996 64 1518 2512291 2614788675
+136	29884011 93994 293593 586970 29.325940990164 58.685934934164 2996 64 1518 2512291 2614788675
+137	29978005 93994 293595 586972 29.325940990164 58.685934934164 2996 64 1518 2512291 2614788675
+138	30071999 173768 293595 586972 29.325940990164 58.685934934164 5992 0 1 2996 2996
+139	30245767 93994 293595 586972 29.325940990164 58.685934934164 2996 64 1518 2512291 2614788675
+140	30339761 87414 293595 586972 29.325940990164 58.685934934164 2996 0 1.1536e-05 0.0006806 7.851125056e-09
+141	30427175 36836 293642 586924 29.331027633704 58.681027633704 1175 101 1499 939659 940847027
+142	30464011 36847 293643 586925 29.331027633704 58.681027633704 1175 109 1507 949059 955956771
+144	30500858 37316 293645 586927 29.331027633704 58.681027633704 1190 21 1500 972859 993788331
+145	30538174 37338 293646 586928 29.331027633704 58.681027633704 1190 39 1518 994279 1029196815
+146	30575512 37338 293646 586928 29.331027633704 58.681027633704 1190 64 1518 994465 1029216855
+147	30612850 69020 293646 586928 29.331027633704 58.681027633704 2380 0 1 1190 1190
+148	30681870 37338 293646 586928 29.331027633704 58.681027633704 1190 64 1518 994465 1029216855
+149	30719208 34645 293646 586928 29.331027633704 58.681027633704 1190 0 1.2304e-05 0.00018456 2.27082624e-09
+150	30753853 37338 293648 586930 29.331039393704 58.681034161704 1190 64 1518 994465 1029216855
+151	30791191 37338 293650 586932 29.331040393704 58.681035161704 1190 64 1518 994465 1029216855
+152	30828529 37338 293650 586932 29.331040393704 58.681035161704 1190 64 1518 994465 1029216855
+153	30865867 37338 293652 586934 29.331040393704 58.681035161704 1190 64 1518 994465 1029216855
+154	30903205 69020 293652 586934 29.331040393704 58.681035161704 2380 0 1 1190 1190
+155	30972225 37338 293652 586934 29.331040393704 58.681035161704 1190 64 1518 994465 1029216855
+156	31009563 34645 293652 586934 29.331040393704 58.681035161704 1190 0 1.1536e-05 0.000173032 1.996004928e-09
+157	31044208 59444 293661 586848 29.33215189365 58.67215189365 1957 100 1500 1569870 1592254796
+158	31103652 59456 293662 586849 29.33215189365 58.67215189365 1957 108 1508 1585526 1617497964
+160	31163108 60580 293664 586851 29.33215189365 58.67215189365 1995 21 1500 1625426 1679988364
+161	31223688 60601 293665 586852 29.33215189365 58.67215189365 1995 39 1518 1661336 1739150080
+162	31284289 60601 293665 586852 29.33215189365 58.67215189365 1995 64 1518 1661744 1739195288
+163	31344890 111748 293513 586852 29.31715189365 58.67215189365 3991 0 1 1995 1995
+164	31456638 60601 293665 586852 29.33215189365 58.67215189365 1995 64 1518 1661744 1739195288
+165	31517239 56230 293513 586852 29.31715189365 58.67215189365 1996 0 1.2304e-05 0.000467552 5.752759808e-09
+166	31573469 60632 293515 586854 29.31716331765 58.67215910965 1996 64 1518 1663164 1741211688
+167	31634101 60632 293517 586856 29.31716431765 58.67216010965 1996 64 1518 1663164 1741211688
+168	31694733 60632 293517 586856 29.31716431765 58.67216010965 1996 64 1518 1663164 1741211688
+169	31755365 60632 293519 586858 29.31716431765 58.67216010965 1996 64 1518 1663164 1741211688
+170	31815997 111776 293519 586858 29.31716431765 58.67216010965 3992 0 1 1996 1996
+171	31927773 60632 293519 586858 29.31716431765 58.67216010965 1996 64 1518 1663164 1741211688
+172	31988405 56228 293519 586858 29.31716431765 58.67216010965 1996 0 1.1536e-05 0.000438336 5.056275456e-09
+173	32044633 46051 293604 586810 29.328442657441 58.668442657441 1468 100 1500 1186699 1211154631
+174	32090684 46062 293605 586811 29.328442657441 58.668442657441 1468 108 1508 1198443 1230235767
+176	32136746 47099 293607 586813 29.328442657441 58.668442657441 1502 21 1500 1228483 1277155167
+177	32183845 47119 293608 586814 29.328442657441 58.668442657441 1502 39 1518 1255519 1321867203
+178	32230964 47119 293608 586814 29.328442657441 58.668442657441 1502 64 1518 1255865 1321906051
+179	32278083 87116 293608 586814 29.328442657441 58.668442657441 3004 0 1 1502 1502
+180	32365199 47119 293608 586814 29.328442657441 58.668442657441 1502 64 1518 1255865 1321906051
+181	32412318 43864 293608 586814 29.328442657441 58.668442657441 1502 0 1.2304e-05 0.000418336 5.147206144e-09
+182	32456182 47119 293610 586816 29.328451913441 58.668454529441 1502 64 1518 1255865 1321906051
+183	32503301 47119 293612 586818 29.328452913441 58.668455529441 1502 64 1518 1255865 1321906051
+184	32550420 47119 293612 586818 29.328452913441 58.668455529441 1502 64 1518 1255865 1321906051
+185	32597539 47119 293614 586820 29.328452913441 58.668455529441 1502 64 1518 1255865 1321906051
+186	32644658 87116 293614 586820 29.328452913441 58.668455529441 3004 0 1 1502 1502
+187	32731774 47119 293614 586820 29.328452913441 58.668455529441 1502 64 1518 1255865 1321906051
+188	32778893 43860 293614 586820 29.328452913441 58.668455529441 1502 0 1.1536e-05 0.000392152 4.523035968e-09
+189	32822753 30703 293528 586715 29.318579456198 58.658579456198 979 100 1500 784364 799088698
+190	32853456 30710 293529 586716 29.318579456198 58.658579456198 979 108 1508 792196 811701178
+192	32884166 31237 293531 586718 29.318579456198 58.658579456198 996 21 1500 812116 842923098
+193	32915403 31246 293532 586719 29.318579456198 58.658579456198 996 39 1518 830044 872481978
+194	32946649 31246 293532 586719 29.318579456198 58.658579456198 996 64 1518 830197 872499089
+195	32977895 57768 293532 586719 29.318579456198 58.658579456198 1992 0 1 996 996
+196	33035663 31246 293532 586719 29.318579456198 58.658579456198 996 64 1518 830197 872499089
+197	33066909 29037 293532 586719 29.318579456198 58.658579456198 996 0 1.2304e-05 0.000209168 2.573603072e-09
+198	33095946 31246 293534 586721 29.318588880198 58.658591520198 996 64 1518 830197 872499089
+199	33127192 31246 293536 586723 29.318589880198 58.658592520198 996 64 1518 830197 872499089
+200	33158438 31246 293536 586723 29.318589880198 58.658592520198 996 64 1518 830197 872499089
+201	33189684 31246 293538 586725 29.318589880198 58.658592520198 996 64 1518 830197 872499089
+202	33220930 57768 293538 586725 29.318589880198 58.658592520198 1992 0 1 996 996
+203	33278698 31246 293538 586725 29.318589880198 58.658592520198 996 64 1518 830197 872499089
+204	33309944 29036 293538 586725 29.318589880198 58.658592520198 996 0 1.1536e-05 0.000196088 2.261794624e-09
+205	33338980 6974 294325 586163 29.4 58.6 293 2730640 3859360 974065920 3.2538917149184e+15
+0	33345954 3489 587095 628330 58.700448831774 62.830448831774 119 107 1485 94020 92027026
+1	33349443 3490 587096 628331 58.700448831774 62.830448831774 119 115 1493 94972 93538962
+3	33352933 3575 587098 628333 58.700448831774 62.830448831774 122 28 1500 97412 97297842
+4	33356508 3577 587099 628334 58.700448831774 62.830448831774 122 46 1518 99608 100844202
+5	33360085 3577 587099 628334 58.700448831774 62.830448831774 122 64 1518 99656 100849564
+6	33363662 6588 587099 628334 58.700448831774 62.830448831774 244 0 1 122 122
+7	33370250 3577 587099 628334 58.700448831774 62.830448831774 122 64 1518 99656 100849564
+8	33373827 3321 587099 628334 58.700448831774 62.830448831774 122 0 1.2304e-05 3.6912e-05 4.54165248e-10
+9	33377148 3577 587101 628336 58.700460775774 62.830458367774 122 64 1518 99656 100849564
+10	33380725 3699 587103 628338 58.700461775774 62.830459367774 122 64 1518 99656 100849564
+11	33384424 3699 587103 628338 58.700461775774 62.830459367774 122 64 1518 99656 100849564
+42	33388123 66348 586991 628473 58.68716187765 62.845491527023 2194 64 1518 1831254 1901825802
+43	33454471 66348 586991 628473 58.68716187765 62.845491527023 2194 64 1518 1831254 1901825802
+44	33520819 122300 586991 628473 58.68716187765 62.845491527023 4388 0 1 2194 2194
+45	33643119 61150 586991 628473 58.68716187765 62.845491527023 2194 0 6 3722 14014
+50	33704269 184449 586991 628473 58.68716187765 62.845491527023 6582 0 1.1536e-05 0.001280448 1.4770694784e-08
+51	33888718 66348 586991 628473 58.68716187765 62.845491527023 2194 64 1518 1831254 1901825802
+52	33955066 66348 586991 628473 58.68716187765 62.845491527023 2194 64 1518 1831254 1901825802
+59	34021414 66348 586993 628475 58.68717086165 62.845493919023 2194 64 1518 1831254 1901825802
+72	34087762 66348 586995 628477 58.68717186165 62.845494919023 2194 64 1518 1831254 1901825802
+73	34154110 66378 586976 628477 58.685941422164 62.845494919023 2195 64 1518 1831932 1902285486
+80	34220488 66352 586977 628478 58.685941422164 62.845494919023 2195 46 1500 1792422 1837047114
+100	34286840 3821 587105 628340 58.700461775774 62.830459367774 122 64 1518 99656 100849564
+101	34290661 7076 587105 628340 58.700461775774 62.830459367774 244 0 1 122 122
+102	34297737 3821 587105 628340 58.700461775774 62.830459367774 122 64 1518 99656 100849564
+103	34301558 3565 587105 628340 58.700461775774 62.830459367774 122 0 1.1536e-05 3.4608e-05 3.99237888e-10
+104	34305123 67408 586979 628480 58.685941422164 62.845494919023 2158 108 1507 1748105 1767832493
+105	34372531 70936 586979 628480 58.685941422164 62.845494919023 2158 30433 32590 68001817 2143676733575
+106	34443467 67364 586980 628462 58.685941422164 62.84216758965 2157 100 1499 1730596 1739940900
+107	34510831 80575 586980 628462 58.685941422164 62.84216758965 2157 4.464e-06 2.7096e-05 0.033883312 6.22589495424e-07
+108	34591406 69577 586980 628462 58.685941422164 62.84216758965 2157 1677 12567 15275081 146516407907
+109	34660983 26103 587038 628463 58.690488135023 62.845488135023 832 100 1499 676643 690875387
+110	34687086 26108 587039 628464 58.690488135023 62.845488135023 832 108 1507 683299 701754923
+112	34713194 26567 587041 628466 58.690488135023 62.845488135023 847 21 1500 700239 728703443
+113	34739761 26576 587042 628467 58.690488135023 62.845488135023 847 39 1518 715485 754186475
+114	34766337 26576 587042 628467 58.690488135023 62.845488135023 847 64 1518 715632 754202968
+115	34792913 49126 587042 628467 58.690488135023 62.845488135023 1694 0 1 847 847
+116	34842039 26576 587042 628467 58.690488135023 62.845488135023 847 64 1518 715632 754202968
+117	34868615 24698 587042 628467 58.690488135023 62.845488135023 847 0 1.2304e-05 0.00018456 2.27082624e-09
+118	34893313 26576 587044 628469 58.690495407023 62.845490527023 847 64 1518 715632 754202968
+119	34919889 26576 587046 628471 58.690496407023 62.845491527023 847 64 1518 715632 754202968
+120	34946465 26576 587046 628471 58.690496407023 62.845491527023 847 64 1518 715632 754202968
+121	34973041 26576 587048 628473 58.690496407023 62.845491527023 847 64 1518 715632 754202968
+122	34999617 49126 587048 628473 58.690496407023 62.845491527023 1694 0 1 847 847
+123	35048743 26576 587048 628473 58.690496407023 62.845491527023 847 64 1518 715632 754202968
+124	35075319 24698 587048 628473 58.690496407023 62.845491527023 847 0 1.1536e-05 0.000173032 1.996004928e-09
+125	35100017 13018 587076 628406 58.695928446164 62.835928446164 415 102 1499 326690 327439898
+126	35113035 13019 587077 628407 58.695928446164 62.835928446164 415 110 1507 330010 332693498
+128	35126054 13326 587079 628409 58.695928446164 62.835928446164 425 21 1500 338510 345616938
+129	35139380 13329 587080 628410 58.695928446164 62.835928446164 425 39 1518 346160 357940998
+130	35152709 13329 587080 628410 58.695928446164 62.835928446164 425 64 1518 346270 357953134
+131	35166038 24650 587080 628410 58.695928446164 62.835928446164 850 0 1 425 425
+132	35190688 13329 587080 628410 58.695928446164 62.835928446164 425 64 1518 346270 357953134
+133	35204017 12415 587080 628410 58.695928446164 62.835928446164 425 0 1.2304e-05 0.00012304 1.51388416e-09
+134	35216432 13329 587082 628412 58.695936398164 62.835936334164 425 64 1518 346270 357953134
+135	35229761 13329 587084 628414 58.695937398164 62.835937334164 425 64 1518 346270 357953134
+136	35243090 13329 587084 628414 58.695937398164 62.835937334164 425 64 1518 346270 357953134
+137	35256419 13329 587086 628416 58.695937398164 62.835937334164 425 64 1518 346270 357953134
+138	35269748 24650 587086 628416 58.695937398164 62.835937334164 850 0 1 425 425
+139	35294398 13329 587086 628416 58.695937398164 62.835937334164 425 64 1518 346270 357953134
+140	35307727 12415 587086 628416 58.695937398164 62.835937334164 425 0 1.1536e-05 0.000115352 1.330608448e-09
+141	35320142 5211 587190 628368 58.706027633704 62.831027633704 166 122 1493 144711 151848013
+142	35325353 5213 587191 628369 58.706027633704 62.831027633704 166 130 1501 146039 154174013
+144	35330566 5305 587193 628371 58.706027633704 62.831027633704 169 21 1500 149419 159970693
+145	35335871 5309 587194 628372 58.706027633704 62.831027633704 169 39 1518 152461 165404533
+146	35341180 5309 587194 628372 58.706027633704 62.831027633704 169 64 1518 152501 165408903
+147	35346489 9802 587194 628372 58.706027633704 62.831027633704 338 0 1 169 169
+148	35356291 5309 587194 628372 58.706027633704 62.831027633704 169 64 1518 152501 165408903
+149	35361600 4928 587194 628372 58.706027633704 62.831027633704 169 0 1.2304e-05 3.6912e-05 4.54165248e-10
+150	35366528 5309 587196 628374 58.706030065704 62.831037801704 169 64 1518 152501 165408903
+151	35371837 5309 587198 628376 58.706031065704 62.831038801704 169 64 1518 152501 165408903
+152	35377146 5309 587198 628376 58.706031065704 62.831038801704 169 64 1518 152501 165408903
+153	35382455 5309 587200 628378 58.706031065704 62.831038801704 169 64 1518 152501 165408903
+154	35387764 9802 587200 628378 58.706031065704 62.831038801704 338 0 1 169 169
+155	35397566 5309 587200 628378 58.706031065704 62.831038801704 169 64 1518 152501 165408903
+156	35402875 4928 587200 628378 58.706031065704 62.831038801704 169 0 1.1536e-05 3.4608e-05 3.99237888e-10
+157	35407803 8432 586981 628444 58.68715189365 62.84215189365 278 105 1495 217395 215660519
+158	35416235 8433 586982 628445 58.68715189365 62.84215189365 278 113 1503 219619 219156631
+160	35424668 8555 586984 628447 58.68715189365 62.84215189365 282 29 1500 225259 227882511
+161	35433223 8560 586985 628448 58.68715189365 62.84215189365 282 47 1518 230335 236083203
+162	35441783 8560 586985 628448 58.68715189365 62.84215189365 282 64 1518 230381 236088437
+163	35450343 15792 586985 628448 58.68715189365 62.84215189365 564 0 1 282 282
+164	35466135 8560 586985 628448 58.68715189365 62.84215189365 282 64 1518 230381 236088437
+165	35474695 7932 586985 628448 58.68715189365 62.84215189365 282 0 1.2304e-05 4.9216e-05 6.05553664e-10
+166	35482627 8560 586987 628450 58.68716087765 62.84215874165 282 64 1518 230381 236088437
+167	35491187 8560 586989 628452 58.68716187765 62.84215974165 282 64 1518 230381 236088437
+168	35499747 8560 586989 628452 58.68716187765 62.84215974165 282 64 1518 230381 236088437
+169	35508307 8560 586991 628454 58.68716187765 62.84215974165 282 64 1518 230381 236088437
+170	35516867 15792 586991 628454 58.68716187765 62.84215974165 564 0 1 282 282
+171	35532659 8560 586991 628454 58.68716187765 62.84215974165 282 64 1518 230381 236088437
+172	35541219 7932 586991 628454 58.68716187765 62.84215974165 282 0 1.1536e-05 4.6144e-05 5.32317184e-10
+173	35549151 6510 587000 628292 58.688442657441 62.828442657441 208 111 1489 159976 152167888
+174	35555661 6512 587001 628293 58.688442657441 62.828442657441 208 119 1497 161640 154740816
+176	35562173 6578 587003 628295 58.688442657441 62.828442657441 210 29 1500 165840 161213456
+177	35568751 6581 587004 628296 58.688442657441 62.828442657441 210 47 1518 169620 167251736
+178	35575332 6581 587004 628296 58.688442657441 62.828442657441 210 64 1518 169646 167254694
+179	35581913 12180 587004 628296 58.688442657441 62.828442657441 420 0 1 210 210
+180	35594093 6581 587004 628296 58.688442657441 62.828442657441 210 64 1518 169646 167254694
+181	35600674 6108 587004 628296 58.688442657441 62.828442657441 210 0 1.2304e-05 2.4608e-05 3.02776832e-10
+182	35606782 6581 587006 628298 58.688454857441 62.828450401441 210 64 1518 169646 167254694
+183	35613363 6581 587008 628300 58.688455857441 62.828451401441 210 64 1518 169646 167254694
+184	35619944 6581 587008 628300 58.688455857441 62.828451401441 210 64 1518 169646 167254694
+185	35626525 6581 587010 628302 58.688455857441 62.828451401441 210 64 1518 169646 167254694
+186	35633106 12180 587010 628302 58.688455857441 62.828451401441 420 0 1 210 210
+187	35645286 6581 587010 628302 58.688455857441 62.828451401441 210 64 1518 169646 167254694
+188	35651867 6108 587010 628302 58.688455857441 62.828451401441 210 0 1.1536e-05 2.3072e-05 2.66158592e-10
+189	35657975 4363 587019 628311 58.688579456198 62.828579456198 139 117 1466 110774 109582770
+190	35662338 4364 587020 628312 58.688579456198 62.828579456198 139 125 1474 111886 111364050
+192	35666702 4366 587022 628314 58.688579456198 62.828579456198 139 145 1494 114666 115895090
+193	35671068 4366 587023 628315 58.688579456198 62.828579456198 139 163 1512 117168 120068102
+194	35675434 4366 587023 628315 58.688579456198 62.828579456198 139 163 1512 117168 120068102
+195	35679800 8062 587023 628315 58.688579456198 62.828579456198 278 0 1 139 139
+196	35687862 4366 587023 628315 58.688579456198 62.828579456198 139 163 1512 117168 120068102
+197	35692228 4031 587023 628315 58.688579456198 62.828579456198 139 0 0 0 0
+198	35696259 4366 587025 628317 58.688585984198 62.828584224198 139 163 1512 117168 120068102
+199	35700625 4366 587027 628319 58.688586984198 62.828585224198 139 163 1512 117168 120068102
+200	35704991 4366 587027 628319 58.688586984198 62.828585224198 139 163 1512 117168 120068102
+201	35709357 4366 587029 628321 58.688586984198 62.828585224198 139 163 1512 117168 120068102
+202	35713723 8062 587029 628321 58.688586984198 62.828585224198 278 0 1 139 139
+203	35721785 4366 587029 628321 58.688586984198 62.828585224198 139 163 1512 117168 120068102
+204	35726151 4031 587029 628321 58.688586984198 62.828585224198 139 0 0 0 0
+205	35730182 1000 587113 628063 58.7 62.8 42 2939520 3776240 139730960 4.667300135488e+14
+
