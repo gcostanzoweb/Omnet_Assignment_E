@@ -1,18 +1,3 @@
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
-
 package gabrielecostanzo_elaborato_e.simulations;
 
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
@@ -44,7 +29,7 @@ module CompoundPriorityQueue extends CompoundPacketQueue
         scheduler: PriorityScheduler {
             @display("p=550,500");
         }
-    connections allowunconnected:
+    connections:
         in --> { @display("m=w"); } --> classifier.in;
         classifier.defaultOut --> defQueue.in;
         defQueue.out --> scheduler.in++;
@@ -60,6 +45,15 @@ network ReteSwitched
     parameters:
         @display("bgb=1230.762,856.138");
         int customDatarate = default(1);
+        int multiplier = default(1);
+        
+        host[0].app[0].sendInterval = multiplier*100ns;
+		host[1].app[0].sendInterval = multiplier*200ns;
+		host[2].app[0].sendInterval = multiplier*300ns;
+		host[3].app[0].sendInterval = multiplier*400ns;
+		host[4].app[0].sendInterval = multiplier*500ns;
+		host[5].app[0].sendInterval = multiplier*600ns;
+		host[6].app[0].sendInterval = multiplier*700ns;
     types:
         channel C extends ThruputMeteringChannel
         {
@@ -67,6 +61,7 @@ network ReteSwitched
             datarate = customDatarate * 1Gbps;
         }
     submodules:
+    	// Moduli di diagnostica
         radioMedium: Ieee80211ScalarRadioMedium {
             @display("p=1081.88,211.56001");
         }
@@ -81,7 +76,7 @@ network ReteSwitched
             @display("p=1081.88,106.64001");
         }
 
-
+		// Rete effettiva
         switch: EtherSwitch {
             parameters:
                 @display("p=545,400");
@@ -106,7 +101,5 @@ network ReteSwitched
             switch.ethg[i] <--> C <--> host[i].ethg[0];
         }
         switch.ethg[7] <--> C <--> sinkHost.ethg[0];
-
-        //switch.ethg[0] <--> C <--> host1.ethg[0];
 }
 
